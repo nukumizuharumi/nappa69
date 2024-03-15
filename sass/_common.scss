@@ -2,9 +2,338 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-*,*::before,*::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+// 基本設定
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 16px;
+  font-family: var(--text-jp);
+  color: var(--text-color);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+
+  &:hover {
+    // color: var(--base-color);
+    background-color: var(--sub-color);
+  }
+}
+
+//フォント
+h2,
+h3,
+li,
+.catchcopy,
+.sns-area {
+  font-family: var(--text-tegaki);
+  text-transform: capitalize;
+  color: var(--tree-color);
+}
+.uppercase {
+  text-transform: uppercase;
+}
+h3 {
+  font-size: 32px;
+}
+li,
+.catchcopy,
+.sns-area {
+  font-size: 20px;
+}
+
+// 共通の装飾
+h3 {
+  position: relative;
+  margin-bottom: 32px;
+}
+.marker-green-line::after {
+  content: "";
+  display: block;
+  background-color: var(--sub-color);
+  width: 300px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  z-index: -1;
+}
+
+// ヘッダー
+.header {
+  position: fixed;
+  height: auto;
+  width: 100%;
+  z-index: 100;
+  background-color: rgb(255,255,255,0.7);
+
+  &-top {
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+
+    h1 {
+      width: 160px;
+    }
+
+    .toggle-container {
+      width: 4rem;
+      height: 4rem;
+      margin: auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include mq {
+        display: none;
+      }
+    }
+    .toggle,
+    .toggle::before,
+    .toggle::after {
+      content: "";
+      display: block;
+      transition: transform 0.5s;
+
+      position: relative;
+      background-color: var(--text-color);
+      width: 30px;
+      height: 2px;
+    }
+    .toggle::before {
+      top: -8px;
+      right: 0px;
+    }
+    .toggle::after {
+      right: 0;
+      top: 8px;
+    }
+
+    @include mq {
+      width: auto;
+    }
+  }
+}
+
+//ナビゲーション
+.header {
+  &-nav {
+    position: absolute;
+    top: 86px;
+    z-index: 90;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-color: rgb(255,255,255,0.7);
+    
+    @include mq {
+      background-color: transparent;
+    }
+
+    @include mq {
+      transform: translateX(0%);
+      opacity: 1;
+      height: auto;
+      width: auto;
+      top: 0px;
+      right: 0px;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+
+      li {
+        width: 100%;
+        a {
+          display: block;
+          width: 100%;
+          padding: 16px;
+          padding-left: 48px;
+
+          @include mq {
+            padding: 16px;
+          }
+        }
+      }
+
+      //PC版
+      @include mq {
+        flex-direction: row;
+      }
+    }
+
+    //PC版
+    @include mq {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .sns-area {
+    justify-content: start;
+    padding-left: 48px;
+
+    @include mq {
+      padding-left: 16px;
+    }
+  }
+}
+
+//ナビゲーション開閉
+.header-nav.show {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toggle-container.open span {
+  background: transparent;
+
+  &::before {
+    opacity: 1;
+    transform: rotate(45deg) translate(2px, 8px);
+    background: var(--text-color);
+  }
+  &::after {
+    opacity: 1;
+    transform: rotate(-45deg) translate(4px, -10px);
+    background: var(--text-color);
+  }
+}
+
+//blogsのスタイル
+.sns-area {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    padding-right: 8px;
+  }
+  a {
+    padding: 16px;
+    img {
+      width: 1.5rem;
+      min-width: 24px;
+      height: auto;
+    }
+  }
+}
+
+//メインビジュアル
+main {
+  position: relative;
+  top: 86px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+//アクセス
+.map {
+  width: 100%;
+  height: 40vh;
+}
+
+// フッター
+footer {
+  margin-top: 80px;
+  position: relative;
+  height: 30vh;
+
+  .sns-area {
+    position: static;
+  }
+  .footer-logo {
+    margin: 0 auto;
+    width: 320px;
+    padding: 16px;
+  }
+
+  .footer-text {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+    bottom: -70%;
+    z-index: 10;
+
+    div {
+      display: flex;
+      justify-content: center;
+
+      p {
+        margin: 0 16px 32px;
+      }
+    }
+  }
+
+  .footer-img {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 20vh;
+    bottom:-70%;
+    object-fit: cover;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -70%;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+//btn
+.btn {
+  border: none;
+  border-radius: 8px;
+
+  a {
+    padding: 16px 32px;
+    display: block;
+    color: var(--base-color);
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      color: var(--tree-color);
+      background-color: var(--sub-color);
+      border-radius: 8px;
+    }
+  }
+}
