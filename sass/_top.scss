@@ -263,6 +263,7 @@ h3 {
 .slider {
   img {
     width: 100%;
+    height: 30vh;
     object-fit: cover;
   }
 
@@ -279,52 +280,70 @@ h3 {
   }
 }
 
-.slider-item > span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 150px;
-  background: #fff;
-  color: #3498db;
-  font-size: 36px;
-  font-weight: bold;
-}
-
 //slickの初期ボタン
-.slick-prev,
-.slick-next {
-  display: none;
-}
+// .slick-prev,
+// .slick-next {
+//   display: none;
+// }
 
 // dots
-.slick-dots {
+.slide-dots {
   display: flex;
   justify-content: center;
   margin-top: 16px;
 }
+// .slick-dots {
+//   display: flex;
+//   justify-content: center;
+//   margin-top: 16px;
+// }
 
-.slick-dots li,
-.slick-dots li button {
+.slide-dots li,
+.slide-dots li button {
   display: block;
   width: 12px;
   height: 12px;
   color: var(--tree-color);
 }
+// .slick-dots li,
+// .slick-dots li button {
+//   display: block;
+//   width: 12px;
+//   height: 12px;
+//   color: var(--tree-color);
+// }
 
-.slick-dots li {
+.slide-dots li {
   margin: 0 8px;
 }
+// .slick-dots li {
+//   margin: 0 8px;
+// }
 
-.slick-dots li button {
+.slide-dots li button {
+  font-size: 16px;
   background-color: var(--tree-color);
+  color: transparent;
   opacity: 0.8;
   border-radius: 100%;
   border: none;
 }
+// .slick-dots li button {
+//   background-color: var(--tree-color);
+//   opacity: 0.8;
+//   border-radius: 100%;
+//   border: none;
 
-.slick-dots li.slick-active button {
+//   position: relative;
+//   text-indent: -9999px;
+// }
+
+.slide-dots li.slick-active button {
   opacity: 0.4;
 }
+// .slick-dots li.slick-active button {
+//   opacity: 0.4;
+// }
 
 //MTR部分
 .click-area {
@@ -466,17 +485,15 @@ h3 {
         min-width: 20% !important;
       }
 
-      .Embed{
+      .Embed {
         .Header {
           display: none !important;
           padding: 0px !important;
         }
-        }
+      }
     }
   }
 }
-
-
 
 .reserve-area {
   .sect-top-leaf {

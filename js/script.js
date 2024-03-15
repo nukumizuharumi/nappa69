@@ -16,7 +16,9 @@ $(".slider").slick({
   fade: true,
   dots:true,
   arrows: false,
+  dotsClass: "slide-dots"
 });
+
 
 //フェード
 window.addEventListener("load", () => {
