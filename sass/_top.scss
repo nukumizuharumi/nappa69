@@ -93,7 +93,7 @@
   }
 
   img {
-    width: 50vh;
+    width: 40vh;
 
     @include mq {
       width: 50vw;
@@ -696,3 +696,4 @@ main {
   animation: fall 13s linear infinite, ltor 4s ease-in-out infinite alternate;
   animation-delay: 4s;
 }
+
